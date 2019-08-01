@@ -10,7 +10,7 @@ func PrintBye() {
 
 //export Sum
 func Sum(a int, b int) int {
-	return a + b;
+	return a + b
 }
 
 func main() {
