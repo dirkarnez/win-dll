@@ -6,23 +6,20 @@ import (
 )
 
 func main() {
-	// Load the DLL
-	dll, err := syscall.LoadDLL("mydll.dll")
+	dll, err := syscall.LoadDLL("exportgo.dll")
 	if err != nil {
 		fmt.Println("Failed to load DLL:", err)
 		return
 	}
-	defer dll.Release() // Release the DLL when we're done
+	defer dll.Release()
 
-	// Get a handle to a function in the DLL
-	proc, err := dll.FindProc("MyFunction")
+	proc, err := dll.FindProc("Sum")
 	if err != nil {
 		fmt.Println("Failed to find function in DLL:", err)
 		return
 	}
 
-	// Call the function
-	result, _, _ := proc.Call()
+	result, _, _ := proc.Call(991, 3)
 
 	fmt.Println("Result:", result)
 }
